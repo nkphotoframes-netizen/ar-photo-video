@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
   <title>AR Test</title>
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    a-scene {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
-<body style="margin:0; overflow:hidden;">
+<body>
 
   <a-scene
     mindar-image="imageTargetSrc: ./targets.mind;"
@@ -27,11 +41,8 @@
   <script>
     const video = document.querySelector("#video");
     document.querySelector("a-scene").addEventListener("loaded", async () => {
-      try {
-        await video.play();
-      } catch(err) {
-        console.log("Video playback failed:", err);
-      }
+      try { await video.play(); } 
+      catch(err){ console.log("Video playback failed:", err); }
     });
   </script>
 
